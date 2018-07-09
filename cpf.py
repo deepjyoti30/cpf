@@ -42,6 +42,7 @@ def main():
     # Extract the source and destinaton
     src = args.SRC
     des = args.DES
+    is_verbose = args.verbose
 
     # Check src and des
     if not sep.check_existence(src, des):
@@ -50,24 +51,37 @@ def main():
         # Register the src and des
         rem('register', src, des)
 
+    if is_verbose:
+        print("{} -> {}".format(src, des))
+
     # Make a temp folder to keep the files
     tmp_dir = os.path.join(os.path.dirname(des), 'cpf_temp')
+
+    if is_verbose:
+        print("Making temp directory..")
     os.mkdir(tmp_dir)
     rem_dir('register', tmp_dir)
 
     beg_time = time.time()
     # Start breaking into chunks
-    sep.make_chunks()
+
+    if is_verbose:
+        print("Making chunks...")
+
+    sep.make_chunks(is_verbose)
+
+    if is_verbose:
+        print("Combining chunks..")
 
     # Now combine the stuff
-    # input("combine??")
     combine.combine_chunks()
 
     # Show copy time
     print(str(round(time.time() - beg_time)) + ' seconds.')
 
     # Remove the folder
-    print('Cleaning up...')
+    if is_verbose:
+        print('Cleaning up...')
 
     cleanup.pass_names(tmp_dir)
     rmtree(tmp_dir)

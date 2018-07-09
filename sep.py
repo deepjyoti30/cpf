@@ -10,7 +10,7 @@ from rem import rem
 import copy
 
 
-def make_chunks():
+def make_chunks(is_verbose=False):
     """Make chunks of the file passed."""
     src, des = rem('grab')
 
@@ -24,6 +24,9 @@ def make_chunks():
 
         if not READ_CHUNK:
             return True
+
+        if is_verbose:
+            print("Copying chunk: {}".format(count))
 
         copy.copy_chunks(READ_CHUNK, count)
 

@@ -22,10 +22,14 @@ class combine(threading.Thread):
         write_nana(self.base, self.chunk, self.token)
 
 
-def combine_chunks():
+def combine_chunks(is_verbose=False):
     """Combine the chunks according to their number."""
     src, des = rem('grab')
     number = check_and_pass() + 1
+
+    if is_verbose:
+        print("%d number of chunks in total..", number)
+
     dest = des
     des = os.path.dirname(des)
     path_tmplt = os.path.join(des, 'cpf_temp', 'cpf_temp_{}')
@@ -35,12 +39,14 @@ def combine_chunks():
         if i == number:
             break
         file = path_tmplt.format(i)
-        # input(file)
+
         READ_stream = open(file, 'rb')
         CONTENT = READ_stream.read(104857600)  # 52428800)  # 209715200)
         append_file(base[0], CONTENT)
-        # write_nana(base[0], CONTENT, i)
-        #  input(base[0])
+
+        if is_verbose:
+            print("%d chunk added.", i)
+
         """thread = combine(base[0], CONTENT, i)
         thread.start()
         thread.join()
