@@ -25,7 +25,8 @@ positional arguments:
 
 optional arguments:
   -h, --help     show this help message and exit
-  -v, --verbose  Explain what is being done.
+  -r, --recursive  Copy the files recursively
+  -v, --verbose  Explain what is being done
 
 ```
 

@@ -18,6 +18,8 @@ from shutil import rmtree
 import cleanup
 import folder
 
+beg_time = time.time()
+
 
 def arguments():
     """Parse the arguments."""
@@ -28,10 +30,10 @@ def arguments():
     parser.add_argument('DES', help="Destinaion File Name.",
                         type=str)
     parser.add_argument('-r', '--recursive',
-                        help="Copy the files recursively.",
+                        help="Copy the files recursively",
                         action='store_true')
     parser.add_argument('-v', '--verbose',
-                        help="Explain what is being done.",
+                        help="Explain what is being done",
                         action='store_true')
 
     args = parser.parse_args()
@@ -87,7 +89,6 @@ def do(src, des, is_verbose=False):
     os.mkdir(tmp_dir)
     rem_dir('register', tmp_dir)
 
-    beg_time = time.time()
     # Start breaking into chunks
 
     if is_verbose:
@@ -100,9 +101,6 @@ def do(src, des, is_verbose=False):
 
     # Now combine the stuff
     combine.combine_chunks()
-
-    # Show copy time
-    print(str(round(time.time() - beg_time)) + ' seconds.')
 
     # Remove the folder
     if is_verbose:
@@ -117,3 +115,7 @@ def do(src, des, is_verbose=False):
 
 if __name__ == "__main__":
     main()
+
+
+# Show copy time
+print(str(round(time.time() - beg_time)) + ' seconds.')
