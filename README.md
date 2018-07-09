@@ -15,7 +15,7 @@ cd cpf
 *You can add an alias to your bashrc or zshrc to use it like cp*
 
 ## Running
-```python
+```sh
 
 usage: cpf.py [-h] [-v] SRC DES
 
