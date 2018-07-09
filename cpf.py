@@ -15,7 +15,6 @@ import os
 import combine
 import time
 from shutil import rmtree
-from print import PREPEND
 import cleanup
 
 
@@ -68,7 +67,6 @@ def main():
     print(str(round(time.time() - beg_time)) + ' seconds.')
 
     # Remove the folder
-    PREPEND(1)
     print('Cleaning up...')
 
     cleanup.pass_names(tmp_dir)

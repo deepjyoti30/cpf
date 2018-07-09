@@ -6,7 +6,6 @@
 """
 
 import os
-from print import PREPEND
 from rem import rem
 import copy
 
@@ -33,13 +32,11 @@ def check_existence(src, dest):
     """Check if the source exists and destinaton does not."""
     if not os.path.isfile(src):
         # Show that source doesn't exist
-        PREPEND(2)
         print("{}: No such file\a".format(src))
         return False
 
     if os.path.isfile(dest):
         # Show that destinaton already exists
-        PREPEND(2)
         print("{}: already exists\a".format(dest))
         return False
 
