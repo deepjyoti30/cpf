@@ -38,6 +38,11 @@ def check_existence(src, dest):
         print("{}: No such file\a".format(src))
         return False
 
+    if os.path.isdir(src):
+        # Show that source is a folder
+        print("{}: is a folder".format(src))
+        return False
+
     if os.path.isfile(dest):
         # Show that destinaton already exists
         print("{}: already exists\a".format(dest))

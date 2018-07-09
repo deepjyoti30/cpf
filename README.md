@@ -34,12 +34,15 @@ optional arguments:
 It uses multithreading in order to copy the files faster.
 The file is broken into chunks and later combined into one big file.
 
-### Things to Add
+### Being worked on
 
 1. Folder copying support.
-2. Progress bar support.
-3. Try to make it more efficient.
-4. Add Windows support (not tested yet, please notify me if it does).
+
+### Things to Add
+
+1. Progress bar support.
+2. Try to make it more efficient.
+3. Add Windows support (not tested yet, please notify me if it does).
 
 ### Issues
 

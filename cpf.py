@@ -16,6 +16,7 @@ import combine
 import time
 from shutil import rmtree
 import cleanup
+import folder
 
 
 def arguments():
@@ -26,6 +27,9 @@ def arguments():
                         type=str)
     parser.add_argument('DES', help="Destinaion File Name.",
                         type=str)
+    parser.add_argument('-r', '--recursive',
+                        help="Copy the files recursively.",
+                        action='store_true')
     parser.add_argument('-v', '--verbose',
                         help="Explain what is being done.",
                         action='store_true')
@@ -33,6 +37,16 @@ def arguments():
     args = parser.parse_args()
 
     return args
+
+
+def run_recursive(src, des, is_verbose):
+    """Run if -r is passed."""
+    if not folder.check_existence(src):
+        exit(2)
+
+    folder.create_des(des)
+
+    folder.scan_pass(src, des, is_verbose)
 
 
 def main():
@@ -43,6 +57,12 @@ def main():
     src = args.SRC
     des = args.DES
     is_verbose = args.verbose
+    is_recursive = args.recursive
+
+    # If recursive is true then pass to check if folders exist
+    if is_recursive:
+        run_recursive(src, des, is_verbose)
+        exit(0)
 
     # Check src and des
     if not sep.check_existence(src, des):
@@ -51,6 +71,11 @@ def main():
         # Register the src and des
         rem('register', src, des)
 
+    do(src, des, is_verbose)
+
+
+def do(src, des, is_verbose=False):
+    """Copy of src to dst."""
     if is_verbose:
         print("{} -> {}".format(src, des))
 
@@ -90,4 +115,5 @@ def main():
     rem_dir('unregister')
 
 
-main()
+if __name__ == "__main__":
+    main()
