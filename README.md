@@ -17,7 +17,7 @@ cd cpf
 ## Running
 ```sh
 
-usage: cpf.py [-h] [-v] SRC DES
+usage: cpf.py [-h] [-r] [-p] [-v] SRC DES
 
 positional arguments:
   SRC            Source File Name.
