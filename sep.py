@@ -57,3 +57,17 @@ def check_existence(src, dest):
         return False
 
     return True
+
+
+def check_filesize():
+    """Check the filesize.
+
+    If the file is 0 bytes size, then no
+    need to use threads and all.
+    If it is not then return True.
+    """
+    src, des = rem('grab')
+    if os.path.getsize(src) == 0:
+        return False
+    else:
+        return True

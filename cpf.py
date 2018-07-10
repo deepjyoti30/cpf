@@ -18,6 +18,7 @@ from shutil import rmtree
 import cleanup
 import folder
 import progress
+import copy
 
 beg_time = time.time()
 
@@ -85,6 +86,12 @@ def do(src, des, is_verbose=False, show_progress=False):
     """Copy of src to dst."""
     if is_verbose or show_progress:
         print("{} -> {}".format(src, des))
+
+    # If the filesize is zero then use simple_copy
+    if not sep.check_filesize():
+        input('Simple copy')
+        copy.simple_copy()
+        return True
 
     if show_progress:
         rem_size('register', os.path.getsize(src))

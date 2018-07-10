@@ -2,7 +2,7 @@
 
 import threading
 import os
-from rem import rem_dir
+from rem import rem_dir, rem
 
 
 class copy(threading.Thread):
@@ -47,3 +47,20 @@ def copy_chunks(chunk, token):
     thread = copy(chunk, token)
     thread.start()
     thread.join()
+
+
+def simple_copy():
+    """Copy the file simply by opening it in write mode in destinaton."""
+    src, des = rem('grab')
+    # All we need to do is keep the filename same
+    # Since the file is of 0 bytes
+    des_name = os.path.basename(des)
+    des_dir = os.path.dirname(des)
+
+    des = os.path.join(des_dir, des_name)
+
+    # Now simply open and close des in write mode
+    TEMP_STREAM = open(des, 'w')
+    TEMP_STREAM.close()
+
+    return True
