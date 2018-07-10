@@ -107,12 +107,12 @@ def do(src, des, is_verbose=False, show_progress=False):
 
     # Start breaking into chunks
 
-    if is_verbose or show_progress:
+    if is_verbose:
         print("Making chunks...")
 
     sep.make_chunks(is_verbose, show_progress)
 
-    if is_verbose or show_progress:
+    if is_verbose:
         print("Combining chunks..")
 
     if show_progress:
@@ -124,6 +124,9 @@ def do(src, des, is_verbose=False, show_progress=False):
 
     # Remove the folder
     if is_verbose or show_progress:
+        if show_progress:
+            # A newline is necessary after showing the progress
+            print('')
         print('Cleaning up...')
 
     # Wait for the progress_bar thread to end

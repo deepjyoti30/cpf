@@ -29,6 +29,7 @@ def show_progress_copy():
     des_dir = os.path.dirname(des)
     path_to_tmp = os.path.join(des_dir, 'cpf_temp', 'cpf_temp_1')
 
+    print('')
     try:
         total_size = rem_size('grab')
         last = os.path.getsize(path_to_tmp)
@@ -48,12 +49,11 @@ def show_progress_copy():
                     sleep(0.2)
 
             sys.stdout.write('\r')
-            sys.stdout.write("[%-20s] %d%%" % ('='*i, 5*i))
+            sys.stdout.write("Combining chunks [%-20s] %d%%" % ('='*i, 5*i))
             sys.stdout.flush()
 
-        print('')
     except Exception:
-        print('Something went wrong while showing the progress bar.\a')
+        # print('Something went wrong while showing the progress bar.\a')
         pass
 
 
@@ -82,7 +82,7 @@ def show_progress_chunk():
     try:
         last = len(os.listdir(tmp_dir))
 
-        for i in range(20):
+        for i in range(40):
             while True:
                 pieces_tillnow = len(os.listdir(tmp_dir))
                 if pieces_tillnow == number_chunks:
@@ -97,10 +97,9 @@ def show_progress_chunk():
                     sleep(0.2)
 
             sys.stdout.write('\r')
-            sys.stdout.write("[%-20s] %d%%" % ('='*i, 5*i))
+            sys.stdout.write("Making chunks    [%-20s] %d%%" % ('='*i, 5*i))
             sys.stdout.flush()
 
-        print('')
     except Exception:
-        print('Something went wrong while showing the progress bar.\a')
+        # print('Something went wrong while showing the progress bar.\a')
         pass

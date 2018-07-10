@@ -38,6 +38,9 @@ def make_chunks(is_verbose=False, show_progress=False):
 
         copy.copy_chunks(READ_CHUNK, count)
 
+    # Wait for progress bar to end
+    progress_bar.join()
+
 
 def check_existence(src, dest):
     """Check if the source exists and destinaton does not."""
