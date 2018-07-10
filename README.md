@@ -38,7 +38,7 @@ The file is broken into chunks and later combined into one big file.
 
 ### Being worked on
 
-1. Progress Bar (Buggy).
+1. Progress Bar.
 
 ### Things to Add
 
