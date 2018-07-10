@@ -43,7 +43,7 @@ The file is broken into chunks and later combined into one big file.
 ### Things to Add
 
  * Try to make it more efficient.
- * Add Windows support (not tested yet, please notify me if it does).
+ * ~~Add Windows support (not tested yet, please notify me if it does).~~
  * ~~Add Folder support.~~
  * ~~Add progressbar.~~
 

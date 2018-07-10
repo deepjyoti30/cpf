@@ -38,8 +38,8 @@ def show_progress_copy():
                 part = os.path.getsize(path_to_tmp)
                 if part == total_size:
                     # If the porgressbar is not complete
-                    if i < 21:
-                        i = 21
+                    if i < 20:
+                        i = 20
                         break
                 elif part > last:
                     last = part

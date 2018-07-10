@@ -131,7 +131,10 @@ def do(src, des, is_verbose=False, show_progress=False):
         progress_bar.join()
 
     cleanup.pass_names(tmp_dir)
-    rmtree(tmp_dir)
+    try:
+        rmtree(tmp_dir)
+    except Exception:
+        pass
 
     rem('unregister')
     rem_dir('unregister')
