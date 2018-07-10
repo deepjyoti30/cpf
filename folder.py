@@ -38,7 +38,7 @@ def create_des(des):
     return True
 
 
-def scan_pass(src, des, is_verbose=False):
+def scan_pass(src, des, is_verbose=False, show_progress=False):
     """Scan the src folder and pass all files to be copied."""
     for file in os.listdir(src):
         sec_src = os.path.join(src, file)
@@ -50,6 +50,6 @@ def scan_pass(src, des, is_verbose=False):
             # Register the src and des
             rem('register', sec_src, sec_des)
 
-            cpf.do(sec_src, sec_des, is_verbose)
+            cpf.do(sec_src, sec_des, is_verbose, show_progress)
         else:
-            cpf.run_recursive(sec_src, sec_des, is_verbose)
+            cpf.run_recursive(sec_src, sec_des, is_verbose, show_progress)

@@ -6,20 +6,28 @@
 """
 
 import os
-from rem import rem
+from rem import rem, rem_read_size
 import copy
+import progress
 
 
-def make_chunks(is_verbose=False):
+def make_chunks(is_verbose=False, show_progress=False):
     """Make chunks of the file passed."""
     src, des = rem('grab')
 
     # Open the file in binary
     FILE_STREAM = open(src, 'rb')
+    rem_read_size('register', 104857600)
+
+    # After registering show progress
+    if show_progress:
+        progress_bar = progress.progress('chunk')
+        progress_bar.start()
 
     count = 0
     while True:
-        READ_CHUNK = FILE_STREAM.read(104857600)  # 52428800)  # 209715200)
+        read_size = rem_read_size('grab')
+        READ_CHUNK = FILE_STREAM.read(read_size)  # 52428800)  # 209715200)
         count += 1
 
         if not READ_CHUNK:

@@ -1,25 +1,9 @@
 """Functions related to combining the chunks."""
 
-from rem import rem
+from rem import rem, rem_read_size
 import os
-import threading
 
 base = []
-
-
-class combine(threading.Thread):
-    """Class to use multithreading for combining."""
-
-    def __init__(self, base, chunk, token):
-        """Init the stuff."""
-        threading.Thread.__init__(self)
-        self.base = base
-        self.chunk = chunk
-        self.token = token
-
-    def run(self):
-        """Run the threads using this function."""
-        write_nana(self.base, self.chunk, self.token)
 
 
 def combine_chunks(is_verbose=False):
@@ -34,6 +18,7 @@ def combine_chunks(is_verbose=False):
     des = os.path.dirname(des)
     path_tmplt = os.path.join(des, 'cpf_temp', 'cpf_temp_{}')
     i = 1
+    read_size = rem_read_size('grab')
     while True:
         i += 1
         if i == number:
@@ -41,16 +26,12 @@ def combine_chunks(is_verbose=False):
         file = path_tmplt.format(i)
 
         READ_stream = open(file, 'rb')
-        CONTENT = READ_stream.read(104857600)  # 52428800)  # 209715200)
+        CONTENT = READ_stream.read(read_size)  # 52428800)  # 209715200)
         append_file(base[0], CONTENT)
 
         if is_verbose:
             print("%d chunk added.", i)
 
-        """thread = combine(base[0], CONTENT, i)
-        thread.start()
-        thread.join()
-        """
         READ_stream.close()
 
     # Rename the base file to des
@@ -62,18 +43,6 @@ def append_file(src, des):
     # Open src in append mode
     APPEND_STREAM = open(src, 'ab')
     APPEND_STREAM.write(des)
-    APPEND_STREAM.close()
-    return True
-
-
-def write_nana(base, chunk, token):
-    """Just a test function."""
-    count = token - 1
-    btoseek = count * 104857600
-    # Seek from the beginning
-    APPEND_STREAM = open(base, 'rb+')
-    APPEND_STREAM.seek(btoseek, 0)
-    APPEND_STREAM.write(chunk)
     APPEND_STREAM.close()
     return True
 

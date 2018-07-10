@@ -26,6 +26,7 @@ positional arguments:
 optional arguments:
   -h, --help     show this help message and exit
   -r, --recursive  Copy the files recursively
+  -p, --progress   Show a progress bar
   -v, --verbose  Explain what is being done
 
 ```
@@ -37,13 +38,12 @@ The file is broken into chunks and later combined into one big file.
 
 ### Being worked on
 
-1. Folder copying support.
+1. Progress Bar (Buggy).
 
 ### Things to Add
 
-1. Progress bar support.
-2. Try to make it more efficient.
-3. Add Windows support (not tested yet, please notify me if it does).
+1. Try to make it more efficient.
+2. Add Windows support (not tested yet, please notify me if it does).
 
 ### Issues
 
