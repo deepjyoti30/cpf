@@ -27,21 +27,21 @@ def show_progress_copy():
     """Show progress by printing recursively."""
     src, des = rem('grab')
     des_dir = os.path.dirname(des)
-    tmp_dir = os.path.join(des_dir, 'cpf_temp')
     path_to_tmp = os.path.join(des_dir, 'cpf_temp', 'cpf_temp_1')
-
-    count = len(os.listdir(tmp_dir))
 
     try:
         total_size = rem_size('grab')
-        part = total_size/count
-        i = 5
-        last = part
+        last = os.path.getsize(path_to_tmp)
 
-        for i in range(20):
+        for i in range(21):
             while True:
                 part = os.path.getsize(path_to_tmp)
-                if part > last:
+                if part == total_size:
+                    # If the porgressbar is not complete
+                    if i < 21:
+                        i = 21
+                        break
+                elif part > last:
                     last = part
                     break
                 else:
@@ -52,7 +52,6 @@ def show_progress_copy():
             sys.stdout.flush()
 
         print('')
-
     except Exception:
         print('Something went wrong while showing the progress bar.\a')
         pass
@@ -87,15 +86,10 @@ def show_progress_chunk():
             while True:
                 pieces_tillnow = len(os.listdir(tmp_dir))
                 if pieces_tillnow == number_chunks:
-                    # If the porgressbar isn not complete
+                    # If the porgressbar is not complete
                     if i < 20:
                         i = 20
                         break
-                    # Else exit the loop
-                    else:
-                        sys.stdout.flush()
-                        print('')
-                        return True
                 elif pieces_tillnow > last:
                     last = pieces_tillnow
                     break
